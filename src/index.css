@@ -1,0 +1,782 @@
+:root {
+  --primary: #2a3f73;
+  --secondary: #3b5998;
+  --accent: #5a7bb5;
+  --light: #e0e7ff;
+  --highlight: #ffcc00;
+  --text: #ffffff;
+  --shadow: rgba(0, 0, 0, 0.2);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+body {
+  font-family: 'Poppins', Arial, sans-serif;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 80px;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  z-index: -1;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header Styles */
+.header {
+  background-color: var(--primary);
+  padding: 20px;
+  color: var(--text);
+  position: relative;
+  /* Set relative positioning for the header */
+  display: flex;
+  justify-content: space-between;
+  /* Space between logo and dropdown */
+  align-items: center;
+  /* Align items vertically */
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  /* Space between logo and dropdown */
+  align-items: center;
+  /* Align items vertically */
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.header::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+  animation: pulse 15s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+
+  50% {
+    transform: scale(1.05);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+}
+
+.header-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 4px var(--shadow);
+  position: relative;
+  padding-bottom: 5px;
+}
+
+.logo::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--highlight);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s ease;
+}
+
+.header:hover .logo::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Hamburger Icon */
+.icon-container {
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: var(--text);
+}
+
+.icon-container:hover {
+  color: var(--highlight);
+}
+
+.menu-icon {
+  width: 30px;
+  height: 30px;
+  transition: transform 0.3s ease;
+}
+
+.icon-container:hover .menu-icon {
+  transform: scale(1.1);
+}
+
+/* Dropdown Menu Styles */
+.dropdown-container {
+  position: relative;
+  /* Keep it positioned relative to the header */
+}
+
+.dropdown-menu {
+  padding: 10px 15px;
+  font-size: 1rem;
+  color: #333;
+  /* Replace with your page text color */
+  border: 1px solid #4caf50;
+  /* Example border color */
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  /* Slightly different background */
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dropdown-menu:hover {
+  background-color: #e0f7fa;
+  /* Example hover background */
+  color: #333;
+  /* Keep the font color consistent */
+}
+
+.dropdown-menu:focus {
+  outline: none;
+  box-shadow: 0 0 5px #4caf50;
+  /* Example focus glow */
+}
+
+/* Option Styles (for dropdown items) */
+.dropdown-menu option {
+  font-size: 1rem;
+  color: #333;
+  /* Match the page text color */
+  background-color: #f9f9f9;
+  /* Match the dropdown background */
+}
+
+.navbar {
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.nav-item {
+  background-color: var(--secondary);
+  color: var(--text);
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-weight: 500;
+  box-shadow: 0 4px 8px var(--shadow);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.nav-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--primary);
+  z-index: -1;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.nav-item:hover {
+  color: var(--highlight);
+}
+
+.nav-item:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.content {
+  margin: 30px auto;
+  width: 90%;
+  max-width: 1100px;
+  background-color: var(--secondary);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.content::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, var(--highlight), var(--primary), var(--highlight));
+  background-size: 200% 100%;
+  animation: gradient 3s linear infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.table-container {
+  overflow-x: auto;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px var(--shadow);
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background-color: var(--accent);
+  overflow: hidden;
+}
+
+th,
+td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+th {
+  background-color: var(--primary);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+}
+
+th:first-child {
+  border-top-left-radius: 10px;
+}
+
+th:last-child {
+  border-top-right-radius: 10px;
+}
+
+tr:last-child td:first-child {
+  border-bottom-left-radius: 10px;
+}
+
+tr:last-child td:last-child {
+  border-bottom-right-radius: 10px;
+}
+
+tr:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+td:first-child {
+  font-weight: 500;
+  color: var(--highlight);
+}
+
+a {
+  color: var(--highlight);
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  padding: 2px 4px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  background-color: var(--primary);
+  box-shadow: 0 2px 5px var(--shadow);
+}
+
+select {
+  margin-top: 8px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--primary);
+  color: var(--text);
+  font-family: 'Poppins', Arial, sans-serif;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 2px 5px var(--shadow);
+}
+
+select:focus {
+  box-shadow: 0 0 0 2px var(--highlight);
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--primary);
+  padding: 20px 0;
+  box-shadow: 0 -4px 12px var(--shadow);
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.button {
+  background-color: var(--secondary);
+  color: var(--text);
+  padding: 12px 25px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 8px var(--shadow);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, var(--primary), var(--accent));
+  z-index: -1;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.3s ease;
+}
+
+.button:hover {
+  color: var(--highlight);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px var (--shadow);
+}
+
+.button:hover::before {
+  transform: scaleY(1);
+}
+
+.button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 8px var(--shadow);
+}
+
+@media (max-width: 768px) {
+  .content {
+    width: 95%;
+    padding: 20px 15px;
+  }
+
+  th,
+  td {
+    padding: 12px 10px;
+  }
+
+  .nav-item {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+
+  .logo {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .button {
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+
+  th,
+  td {
+    padding: 10px 8px;
+    font-size: 14px;
+  }
+
+  select {
+    padding: 6px 8px;
+    font-size: 14px;
+  }
+}
+
+.education-header {
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  /* Space between the icon and text */
+}
+
+.education-icon {
+  width: 40px;
+  height: auto;
+}
+
+/* Education Page Styles */
+.education-container {
+  max-width: 800px;
+  margin: 40px auto;
+  /* Add more space around the container */
+  padding: 30px;
+  background-color: var(--secondary);
+  border-radius: 15px;
+  box-shadow: 0 6px 15px var(--shadow);
+  color: var(--text);
+  line-height: 1.8;
+}
+
+.education-container h1 {
+  text-align: center;
+  color: var(--highlight);
+  margin-bottom: 30px;
+  /* Add more space below the main title */
+  font-size: 2.5rem;
+}
+
+.education-container h2 {
+  color: var(--light);
+  margin-bottom: 20px;
+  font-size: 2rem;
+  text-align: center;
+  /* Center-align the section title */
+}
+
+.education-container h3 {
+  color: var(--accent);
+  margin-top: 30px;
+  /* Add more space above each subsection */
+  margin-bottom: 15px;
+  font-size: 1.6rem;
+}
+
+.education-container p {
+  margin-bottom: 20px;
+  /* Add more space between paragraphs */
+  font-size: 1.1rem;
+}
+
+.education-container ul,
+.education-container ol {
+  margin-left: 30px;
+  /* Indent the lists slightly */
+  margin-bottom: 25px;
+  /* Add space below lists */
+}
+
+.education-container ul li,
+.education-container ol li {
+  margin-bottom: 12px;
+  /* Add space between list items */
+  font-size: 1.1rem;
+}
+
+.education-container a {
+  color: var(--highlight);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.education-container a:hover {
+  text-decoration: underline;
+}
+
+.education-container strong {
+  color: var (--highlight);
+}
+
+/* Add spacing between sections */
+.education-section {
+  margin-bottom: 30px;
+  /* Add space between sections */
+}
+
+/* Back Button Styles */
+.back-button {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 12px 25px;
+  background-color: var(--primary);
+  color: var(--text);
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.back-button:hover {
+  background-color: var(--highlight);
+  transform: translateY(-3px);
+}
+
+.back-button:active {
+  transform: translateY(0);
+}
+
+.navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.back-button,
+.next-button {
+  padding: 12px 25px;
+  background-color: var(--primary);
+  color: var(--text);
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.back-button:hover,
+.next-button:hover {
+  background-color: var(--highlight);
+  transform: translateY(-3px);
+}
+
+.back-button:active,
+.next-button:active {
+  transform: translateY(0);
+}
+
+/* Tertiary Education Page Styles */
+.tertiary-container {
+  max-width: 800px;
+  margin: 40px auto;
+  /* Same spacing as Education page */
+  padding: 30px;
+  background-color: var(--secondary);
+  border-radius: 15px;
+  box-shadow: 0 6px 15px var(--shadow);
+  color: var(--text);
+  line-height: 1.8;
+}
+
+.tertiary-container h1 {
+  text-align: center;
+  color: var(--highlight);
+  margin-bottom: 30px;
+  /* Add space below the main title */
+  font-size: 2.5rem;
+}
+
+.tertiary-container h3 {
+  color: var(--accent);
+  margin-top: 30px;
+  /* Add space above each subsection */
+  margin-bottom: 15px;
+  font-size: 1.6rem;
+}
+
+.tertiary-container p {
+  margin-bottom: 20px;
+  /* Add space between paragraphs */
+  font-size: 1.1rem;
+}
+
+.tertiary-container ul,
+.tertiary-container ol {
+  margin-left: 30px;
+  /* Indent the lists slightly */
+  margin-bottom: 25px;
+  /* Add space below lists */
+}
+
+.tertiary-container ul li,
+.tertiary-container ol li {
+  margin-bottom: 12px;
+  /* Add space between list items */
+  font-size: 1.1rem;
+}
+
+.tertiary-container a {
+  color: var(--highlight);
+  text-decoration: none;
+}
+
+.tertiary-container a:hover {
+  text-decoration: underline;
+}
+
+/* Navigation Buttons (Back and Next) */
+.navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  /* Add space above the buttons */
+}
+
+.back-button,
+.next-button {
+  padding: 12px 25px;
+  /* Same size as Education page buttons */
+  background-color: var(--primary);
+  color: var (--text);
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.back-button:hover,
+.next-button:hover {
+  background-color: var(--highlight);
+  transform: translateY(-3px);
+}
+
+.back-button:active,
+.next-button:active {
+  transform: translateY(0);
+}
+
+/* Menu Styles */
+.menu {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.menu-list {
+  list-style: none;
+  padding: 0;
+  display: inline-flex;
+  /* Display menu items in a horizontal row */
+  gap: 15px;
+  /* Space between menu items */
+}
+
+.menu-item {
+  background-color: var(--primary);
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  box-shadow: 0 4px 8px var(--shadow);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.menu-item a {
+  text-decoration: none;
+  color: var(--text);
+}
+
+.menu-item:hover {
+  background-color: var(--highlight);
+  transform: translateY(-3px);
+}
+
+.menu-item:active {
+  transform: translateY(0);
+}
+
+/* Dropdown Menu Container */
+.dropdown-container {
+  position: relative;
+  /* Keep it positioned relative to the header */
+}
+
+.dropdown-menu {
+  padding: 10px 15px;
+  font-size: 1rem;
+  color: #333;
+  /* Replace with your page text color */
+  border: 1px solid #4caf50;
+  /* Example border color */
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  /* Slightly different background */
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dropdown-menu:hover {
+  background-color: #e0f7fa;
+  /* Example hover background */
+  color: #333;
+  /* Keep the font color consistent */
+}
+
+.dropdown-menu:focus {
+  outline: none;
+  box-shadow: 0 0 5px #4caf50;
+  /* Example focus glow */
+}
+
+.dropdown-menu option {
+  font-size: 1rem;
+  color: #333;
+  /* Match the page text color */
+  background-color: #f9f9f9;
+  /* Match the dropdown background */
+}
